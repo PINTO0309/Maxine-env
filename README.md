@@ -9,7 +9,7 @@ NVIDIA Maxine - A playground for running the Audio Effects SDK.
 
 4. https://catalog.ngc.nvidia.com/orgs/nvidia/teams/maxine/resources/maxine_windows_audio_effects_sdk_ga
 
-5. https://catalog.ngc.nvidia.com/orgs/nvidia/teams/maxine/resources/maxine_linux_video_effects_sdk_ga
+5. https://catalog.ngc.nvidia.com/orgs/nvidia/teams/maxine/resources/maxine_linux_audio_effects_sdk_ga
 
 ## 1. Advance preparation
 
