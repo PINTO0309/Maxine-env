@@ -11,6 +11,11 @@ NVIDIA Maxine - A playground for running the Audio Effects SDK.
 
 5. https://catalog.ngc.nvidia.com/orgs/nvidia/teams/maxine/resources/maxine_linux_audio_effects_sdk_ga
 
+## 0. Environment
+1. Ubuntu 22.04
+2. Docker
+3. NVIDIA RTX3070 (8GB)
+
 ## 1. Advance preparation
 
 ```bash
