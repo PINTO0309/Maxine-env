@@ -94,9 +94,36 @@ declare -A gpu_map=( ["a100"]="sm_80"
 
 model="../../models"
 if [ "$effect" == "superres" ]; then
-  model="${model}/${arch}/${effect}_${sample_rate}k_to_${output_sample_rate}k.trtpkg"
-else
+  if [ "$sample_rate" == "16" ]; then
+    model="${model}/${arch}/${effect}_${sample_rate}k_to_${output_sample_rate}k_192.trtpkg"
+  fi
+  if [ "$sample_rate" == "8" ]; then
+    if [ "$output_sample_rate" == "16" ]; then
+      model="${model}/${arch}/${effect}_${sample_rate}k_to_${output_sample_rate}k_416.trtpkg"
+    else
+      model="${model}/${arch}/${effect}_${sample_rate}k_to_${output_sample_rate}k_128.trtpkg"
+    fi
+  fi
+fi
+
+if [ "$effect" == "aec" ]; then
+  if [ "$sample_rate" == "16" ]; then
+    model="${model}/${arch}/${effect}_${sample_rate}k_3072.trtpkg"
+  else
+    model="${model}/${arch}/${effect}_${sample_rate}k_1536.trtpkg"
+  fi
+fi
+
+if [ "$effect" == "dereverb" ]; then
   model="${model}/${arch}/${effect}_${sample_rate}k_3072.trtpkg"
+fi
+
+if [ "$effect" == "dereverb_denoiser" ]; then
+  if [ "$sample_rate" == "16" ]; then
+    model="${model}/${arch}/${effect}_${sample_rate}k_3072.trtpkg"
+  else
+    model="${model}/${arch}/${effect}_${sample_rate}k_1024.trtpkg"
+  fi
 fi
 ```
 
