@@ -82,7 +82,8 @@ fi
 ./run_effect.sh -g rtx3070 -s 16 -e aec
 ```
 
-## 3. Noise-reduced WAV playback
+## 3. Processed WAV playback
 ```
 aplay denoiser/16k/denoiser_16k_1.wav
+aplay aec/16k/aec_16k_1.wav
 ```
