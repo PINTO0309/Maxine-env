@@ -129,10 +129,12 @@ fi
 
 ## 2. Execution
 ### 2-1. Noise Removal/Background Noise Suppression Effect
+https://docs.nvidia.com/deeplearning/maxine/audio-effects-sdk/index.html#background-noise-supp-effect
 ```bash
 ./run_effect.sh -g rtx3070 -s 16 -e denoiser
 ```
-### 2-2. Noise Removal/Background Noise Suppression Effect
+### 2-2. Acoustic Echo Cancellation Effect (BETA)
+https://docs.nvidia.com/deeplearning/maxine/audio-effects-sdk/index.html#acoustic-echo-cancellation
 ```bash
 ./run_effect.sh -g rtx3070 -s 16 -e aec
 ./run_effect.sh -g rtx3070 -s 48 -e aec
