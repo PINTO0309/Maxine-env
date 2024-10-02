@@ -47,6 +47,15 @@ ii  libnvonnxparsers8     8.5.1-1+cuda11.8   amd64 TensorRT ONNX libraries
 ii  libnvparsers-dev      8.5.1-1+cuda11.8   amd64 TensorRT parsers libraries
 ii  libnvparsers8         8.5.1-1+cuda11.8   amd64 TensorRT parsers libraries
 ii  tensorrt-dev          8.5.1.7-1+cuda11.8 amd64 Meta package for TensorRT development libraries
+
+apt-get update \
+&& apt-get install -y \
+    cuda-compat-11-8 \
+    nano \
+    alsa-base
+
+sed -i '$ a\export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-11.8/compat' ~/.bashrc
+source ~/.bashrc
 ```
 
 https://developer.nvidia.com/cuda-gpus
