@@ -7,7 +7,7 @@ RUN apt-get update \
         cuda-compat-11-8 \
         nano \
         alsa-base \
-    && && sed -i 's/# set linenumbers/set linenumbers/g' /etc/nanorc \
+    && sed -i 's/# set linenumbers/set linenumbers/g' /etc/nanorc \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
