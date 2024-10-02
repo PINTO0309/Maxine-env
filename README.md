@@ -75,7 +75,7 @@ fi
 ## 2. Execution
 ### 2-1. Noise Removal/Background Noise Suppression Effect
 ```bash
-./run_effect.sh -c t4_denoise16k_1_cfg.txt -g rtx3070
+./run_effect.sh -g rtx3070 -s 16 -e denoiser
 ```
 ### 2-2. Noise Removal/Background Noise Suppression Effect
 ```bash
