@@ -135,6 +135,7 @@ fi
 ### 2-2. Noise Removal/Background Noise Suppression Effect
 ```bash
 ./run_effect.sh -g rtx3070 -s 16 -e aec
+./run_effect.sh -g rtx3070 -s 48 -e aec
 ```
 
 ## 3. Processed WAV playback
