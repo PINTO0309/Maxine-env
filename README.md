@@ -18,45 +18,59 @@ NVIDIA Maxine - A playground for running the Audio Effects SDK.
 
 ## 1. Advance preparation
 
-```bash
-IP_ADDRESS=$(hostname -I | cut -f1 -d' ')
+- A sequence for installing and starting additional packages
+  ```bash
+  IP_ADDRESS=$(hostname -I | cut -f1 -d' ')
+  
+  docker run --rm -it --gpus all \
+  -v `pwd`:/workdir \
+  -w /workdir \
+  -e PULSE_SERVER=$IP_ADDRESS \
+  nvcr.io/nvidia/tensorrt:22.11-py3
+  
+  nvcc --version
+  
+  nvcc: NVIDIA (R) Cuda compiler driver
+  Copyright (c) 2005-2022 NVIDIA Corporation
+  Built on Wed_Sep_21_10:33:58_PDT_2022
+  Cuda compilation tools, release 11.8, V11.8.89
+  Build cuda_11.8.r11.8/compiler.31833905_0
+  
+  dpkg -l | grep TensorRT
+  
+  ii  libnvinfer-bin        8.5.1-1+cuda11.8   amd64 TensorRT binaries
+  ii  libnvinfer-dev        8.5.1-1+cuda11.8   amd64 TensorRT development libraries and headers
+  ii  libnvinfer-plugin-dev 8.5.1-1+cuda11.8   amd64 TensorRT plugin libraries
+  ii  libnvinfer-plugin8    8.5.1-1+cuda11.8   amd64 TensorRT plugin libraries
+  ii  libnvinfer8           8.5.1-1+cuda11.8   amd64 TensorRT runtime libraries
+  ii  libnvonnxparsers-dev  8.5.1-1+cuda11.8   amd64 TensorRT ONNX libraries
+  ii  libnvonnxparsers8     8.5.1-1+cuda11.8   amd64 TensorRT ONNX libraries
+  ii  libnvparsers-dev      8.5.1-1+cuda11.8   amd64 TensorRT parsers libraries
+  ii  libnvparsers8         8.5.1-1+cuda11.8   amd64 TensorRT parsers libraries
+  ii  tensorrt-dev          8.5.1.7-1+cuda11.8 amd64 Meta package for TensorRT development libraries
+  
+  apt-get update \
+  && apt-get install -y \
+      cuda-compat-11-8 \
+      nano \
+      alsa-base
+  
+  sed -i '$ a\export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-11.8/compat' ~/.bashrc
+  source ~/.bashrc
+  ```
 
-docker run --rm -it --gpus all \
--v `pwd`:/workdir \
--w /workdir \
--e PULSE_SERVER=$IP_ADDRESS \
-nvcr.io/nvidia/tensorrt:22.11-py3
+or
 
-nvcc --version
-
-nvcc: NVIDIA (R) Cuda compiler driver
-Copyright (c) 2005-2022 NVIDIA Corporation
-Built on Wed_Sep_21_10:33:58_PDT_2022
-Cuda compilation tools, release 11.8, V11.8.89
-Build cuda_11.8.r11.8/compiler.31833905_0
-
-dpkg -l | grep TensorRT
-
-ii  libnvinfer-bin        8.5.1-1+cuda11.8   amd64 TensorRT binaries
-ii  libnvinfer-dev        8.5.1-1+cuda11.8   amd64 TensorRT development libraries and headers
-ii  libnvinfer-plugin-dev 8.5.1-1+cuda11.8   amd64 TensorRT plugin libraries
-ii  libnvinfer-plugin8    8.5.1-1+cuda11.8   amd64 TensorRT plugin libraries
-ii  libnvinfer8           8.5.1-1+cuda11.8   amd64 TensorRT runtime libraries
-ii  libnvonnxparsers-dev  8.5.1-1+cuda11.8   amd64 TensorRT ONNX libraries
-ii  libnvonnxparsers8     8.5.1-1+cuda11.8   amd64 TensorRT ONNX libraries
-ii  libnvparsers-dev      8.5.1-1+cuda11.8   amd64 TensorRT parsers libraries
-ii  libnvparsers8         8.5.1-1+cuda11.8   amd64 TensorRT parsers libraries
-ii  tensorrt-dev          8.5.1.7-1+cuda11.8 amd64 Meta package for TensorRT development libraries
-
-apt-get update \
-&& apt-get install -y \
-    cuda-compat-11-8 \
-    nano \
-    alsa-base
-
-sed -i '$ a\export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/cuda-11.8/compat' ~/.bashrc
-source ~/.bashrc
-```
+- Additional packages installed
+  ```bash
+  IP_ADDRESS=$(hostname -I | cut -f1 -d' ')
+  
+  docker run --rm -it --gpus all \
+  -v `pwd`:/workdir \
+  -w /workdir \
+  -e PULSE_SERVER=$IP_ADDRESS \
+  pinto0309/maxine-env:cuda11.8-tensorrt8.5.1
+  ```
 
 https://developer.nvidia.com/cuda-gpus
 
